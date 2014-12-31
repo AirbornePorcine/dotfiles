@@ -19,7 +19,6 @@ Plugin 'scrooloose/syntastic'
 Plugin 'tpope/vim-surround'
 Plugin 'jelera/vim-javascript-syntax'
 Plugin 'pangloss/vim-javascript'
-Plugin 'nathanaelkane/vim-indent-guides'
 Plugin 'Raimondi/delimitMate'
 Plugin 'Valloric/YouCompleteMe'
 Plugin 'marijnh/tern_for_vim'
@@ -27,6 +26,8 @@ Plugin 'kien/ctrlp.vim'
 Plugin 'Lokaltog/vim-easymotion'
 Plugin 'terryma/vim-smooth-scroll'
 Plugin 'stephpy/vim-yaml'
+Plugin 'godlygeek/tabular'
+Plugin 'terryma/vim-multiple-cursors'
 
 call vundle#end()
 filetype plugin indent on
@@ -163,8 +164,6 @@ let NERDTreeHighlightCursorLine=1
 
 " Syntastic options
 let g:syntastic_check_on_open=1
-
-" CtrlP options
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Powerline Setup
