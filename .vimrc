@@ -37,7 +37,6 @@ filetype plugin indent on
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 set modelines=0		" Stops some security exploits
 set encoding=utf-8
-set clipboard=unnamedplus	" Use system clipboard
 set scrolloff=3		" Show 3 lines above/below line when scrolling
 set autoindent		" Use same indent as last line
 set hidden			" Hide unsaved buffers to make opening new files easy
