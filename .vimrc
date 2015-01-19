@@ -86,6 +86,10 @@ colorscheme solarized
 " Syntax highlighting for YAML
 au BufNewFile,BufRead *.yaml,*.yml so ~/.vim/bundle/vim-yaml/after/syntax/yaml.vim
 
+" Store backups and swap files elsewhere
+set backupdir=~/.vim/backup//
+set directory=~/.vim/swp//
+
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Mappings
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
