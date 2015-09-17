@@ -23,11 +23,16 @@ Plugin 'Raimondi/delimitMate'
 Plugin 'Valloric/YouCompleteMe'
 Plugin 'marijnh/tern_for_vim'
 Plugin 'kien/ctrlp.vim'
-Plugin 'Lokaltog/vim-easymotion'
 Plugin 'terryma/vim-smooth-scroll'
 Plugin 'stephpy/vim-yaml'
 Plugin 'godlygeek/tabular'
 Plugin 'terryma/vim-multiple-cursors'
+Plugin 'fatih/vim-go'
+Plugin 'moll/vim-bbye'
+Plugin 'saltstack/salt-vim'
+Plugin 'bling/vim-airline'
+Plugin 'Lokaltog/vim-easymotion'
+Plugin 'vim-scripts/argtextobj.vim'
 
 call vundle#end()
 filetype plugin indent on
@@ -59,7 +64,6 @@ set showmatch
 set hlsearch
 
 " Wrap text and show a line at 80 characters
-set wrap
 set textwidth=79
 set formatoptions=qrn1
 set colorcolumn=80
@@ -72,7 +76,7 @@ set listchars=tab:▸\
 au FocusLost * :wa
 
 set laststatus=2	" Always display the statusline in all windows
-set showtabline=2	" Always display the tabline, even if there is only one tab
+set showtabline=1	" Always display the tabline, even if there is only one tab
 set noshowmode		" Hide the default mode text (e.g. -- INSERT -- below the statusline)
 
 set relativenumber	" Show relative line numbers
@@ -89,6 +93,15 @@ au BufNewFile,BufRead *.yaml,*.yml so ~/.vim/bundle/vim-yaml/after/syntax/yaml.v
 " Store backups and swap files elsewhere
 set backupdir=~/.vim/backup//
 set directory=~/.vim/swp//
+
+" Use OSX clipboard register by default
+set clipboard=unnamed
+
+" Extended history
+set history=1000
+
+" Lazy redraw
+set lazyredraw
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Mappings
@@ -135,7 +148,7 @@ inoremap jk <ESC>
 imap <C-c> <CR><Esc>O
 
 " Nerd tree toggle
-nmap <leader>n :NERDTreeToggle<CR>
+nmap <leader>f :NERDTreeToggle<CR>
 
 " Smooth half-page scroll
 noremap <silent> <c-u> :call smooth_scroll#up(&scroll, 0, 2)<CR>
@@ -157,6 +170,39 @@ map 0 ^
 " Fast saving
 nmap <leader>w :w!<cr>
 
+" Quick cycle through buffers
+:nnoremap <leader>n :bnext<CR>
+:nnoremap <leader>p :bprevious<CR>
+
+" Map closing buffers
+:nnoremap <Leader>q :Bdelete<CR>
+
+" Golang mappings
+"""""""""""""""""
+
+" Rename
+au FileType go nmap <Leader>e <Plug>(go-rename)
+
+" Run, build, test, coverage
+au FileType go nmap <leader>r <Plug>(go-run)
+au FileType go nmap <leader>b <Plug>(go-build)
+au FileType go nmap <leader>t <Plug>(go-test)
+au FileType go nmap <leader>c <Plug>(go-coverage)
+
+" Implements
+au FileType go nmap <Leader>s <Plug>(go-implements)
+
+" Info
+au FileType go nmap <Leader>ii <Plug>(go-info)
+
+" Godoc / godoc vertical
+au FileType go nmap <Leader>gd <Plug>(go-doc)
+au FileType go nmap <Leader>gv <Plug>(go-doc-vertical)
+
+" Install
+au FileType go nmap <Leader>i <Plug>(go-install)
+
+
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Plugin Options
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -168,11 +214,10 @@ let NERDTreeHighlightCursorLine=1
 " Syntastic options
 let g:syntastic_check_on_open=1
 
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" Powerline Setup
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" vim go options
+let g:go_bin_path = expand("~/.gotools")
+let g:go_fmt_command = "goimports"
 
-python from powerline.vim import setup as powerline_setup
-python powerline_setup()
-python del powerline_setup
-
+set laststatus=2
+let g:airline_powerline_fonts = 1
+let g:airline#extensions#tabline#enabled = 1
